@@ -18,17 +18,17 @@ checkpoints/
 *.safetensors
 *.bin
 
-# 数据（RoboTwin / LIBERO 原始与缓存不入库）
-data/
-datasets/
+# 数据（RoboTwin / LIBERO 原始与缓存不入库；仅根级目录）
+/data/
+/datasets/
 *.hdf5
 *.h5
 
-# 日志与运行
-logs/
-runs/
-wandb/
-outputs/
+# 日志与运行（仅根级目录）
+/logs/
+/runs/
+/wandb/
+/outputs/
 *.log
 
 # 实验原始产物（experiments/ 只留记录与指针）
