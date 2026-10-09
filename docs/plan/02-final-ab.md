@@ -1,6 +1,6 @@
 # 02 · 最终 A+B 设计
 
-> 提炼自旧库 `68-Wan22_BWM_Action_Input_and_Final_AB_Design.md` 与
+> 提炼自旧库 68 号文档（Wan2.2 动作输入模型与最终 A+B 设计）与
 > `executor_tasks/2026-10-09_round9_final/03_FINAL_AB.md`。
 
 ## A · 可观测的剩余目标验证
@@ -31,7 +31,7 @@
 
 - 14D RoboTwin 模型与 7D Cosmos/LIBERO actor **动作空间不同，不能直接连**。
 - 前置：14D 模型 val 已学会利用动作，且 A-only 有收益（或明显缩小 oracle 差距）。
-- 做法：复制 BWM 结构为 `action_dim=7`，迁移本轮 14D 的 Wan DiT 差分，新 7D encoder 随机初始化；
+- 做法：复制双路径动作条件结构为 `action_dim=7`，迁移本轮 14D 的 Wan DiT 差分，新 7D encoder 随机初始化；
   在 LIBERO train 角色 RGB 双视角、真实 7D OSC 命令上 SFT；7D 有独立 train-only stats 与分支验收。
 - 联合世界模型用 **25 总帧 = 9 条件 + 16 未来**（对齐 Cosmos 每 chunk 16 动作），双视角都预测。
 - 桥接失败或 A 无收益 → 停止联合扩张，写明 "A+B 联合主张未成立"。

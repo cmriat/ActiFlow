@@ -6,7 +6,7 @@
 | 任务 | 内容 | 要点 |
 |---|---|---|
 | F00 | 恢复、固定阳性产物与接管清理 | 核验 EXP-134；冻结 FIXED160 spec；新 root 分配（train/val/confirmation 登记在先） |
-| F01 | BWM 结构与数据契约 | 固定 source commit；`architecture_parity.md`；冻结 split/norm/时序索引表/ROI 规则 |
+| F01 | 动作条件结构与数据契约 | 固定 source commit；`architecture_parity.md`；冻结 split/norm/时序索引表/ROI 规则 |
 | F02 | 可训练实现 + 20 步 smoke + 过拟合检查 | factory/data/loss 兼容修复；两路径梯度；free-run 4 条 |
 | F03 | 正式动作 SFT + NULL 对照 | 3000 步 33→81 帧；两臂同预算；固定 val 选 checkpoint |
 | F04 | 独立动作效能 + 真实分支 | 60 clip 四路对照；12 root × 3 分支；8ep×3chunk 自回归 |

@@ -1,8 +1,8 @@
-# 01 · Wan2.2 + BWM 结构的动作输入世界模型
+# 01 · Wan2.2 动作输入世界模型
 
 > 提炼自旧库 `executor_tasks/2026-10-09_round9_final/02_WAN_ACTION_MODEL.md`（实现细节以该文为准）。
 
-## 结构（公开 BWM 双路径，source commit 固定）
+## 结构（公开双路径动作条件，source commit 固定）
 
 设动作 `a ∈ R[B,T,14]`，T 满足 `4k+1`：
 
@@ -18,7 +18,7 @@
 ## 初始化与动作接口
 
 - 从**原始 Wan2.2-TI2V-5B** 加载 DiT/VAE（记录 shard/config hash），action encoder 随机初始化；
-  不得用官方已训 BWM 权重当初始化。
+  不得用上游任何已训动作模型权重当初始化。
 - 动作 = RoboTwin **14D commanded joint targets**（左右各 6 关节 + 夹爪，hdf5 `action/*joint_states`）；
   与官方 14D EEF 绝对命令维度/拓扑一致、**语义不同**，model card 必须写明。
 - 禁止把未来测量 state 当动作输入。
@@ -34,7 +34,7 @@
 
 1. 20 步 smoke（数值/梯度/形状/泄漏/重载一致）——不用于判断效能。
 2. 8–16 clips、200–400 步可学性 + free-run ≥4 条。
-3. 正式两臂 `ACTION_BWM` / `NULL_ACTION`：同初始化、同 train 列表、同噪声流、同优化步。
+3. 正式两臂 `ACTION` / `NULL_ACTION`：同初始化、同 train 列表、同噪声流、同优化步。
 4. 默认 3000 optimizer updates（前 1000 步 33 帧、后 2000 步 81 帧）；val 仍改善可到 6000。
    bf16；encoder 全训 lr 1e-4 + DiT LoRA rank32 lr 2e-5；VAE 冻结、text off。
 5. checkpoint 选择 = 固定规则下最低 val 未来误差且不丢动作响应；test 只用选定版本。
@@ -44,8 +44,6 @@
 `INTERFACE_READY`（接口通、重载一致）→ `TRAIN_FIT`（train 拟合）→
 `ACTION_USEFUL_HELDOUT`（heldout 动态误差较 NULL 相对降 ≥5%，正确动作优于错动作 episode 比例 ≥65%）→
 `BRANCH_VALIDATED`（12 root × 3 合法分支，预测更接近自己分支真实未来）。
-
-评测细则（ROI 指标、50 步去噪、自回归 8ep×3chunk、bootstrap 区间）见 `actiflow/evaluation/README.md`。
 
 ## 交付格式
 
