@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# 训练产物与权重（不入库，仅存共享持久路径）
+checkpoints/
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+*.bin
+
+# 数据（RoboTwin / LIBERO 原始与缓存不入库）
+data/
+datasets/
+*.hdf5
+*.h5
+
+# 日志与运行
+logs/
+runs/
+wandb/
+outputs/
+*.log
+
+# 实验原始产物（experiments/ 只留记录与指针）
+experiments/raw/
+experiments/videos/
+*.mp4
+
+# 系统/编辑器
+.DS_Store
+.idea/
+.vscode/
+*.swp

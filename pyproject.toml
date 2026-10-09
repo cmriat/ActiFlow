@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "actiflow"
+version = "0.0.0"
+description = "Action-conditioned flow world models for long-horizon robot execution (RSI + embodied WAM)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "TBD" }
+dependencies = [
+    # 待定：随代码迁入补全（torch / diffusers 相关 / h5py / einops ...）
+]
+
+[tool.setuptools.packages.find]
+include = ["actiflow*"]
