@@ -1,5 +1,10 @@
 # ActiFlow
 
+[![CVPR 2027](https://img.shields.io/badge/CVPR_2027-Intended_Submission-blue)](https://cvpr.thecvf.com/Conferences/2027)
+[![Status](https://img.shields.io/badge/Status-WIP%20%C2%B7%20Actively%20Updated-orange)](https://github.com/cmriat/ActiFlow)
+
+> 本仓库为 **CVPR 2027 拟投稿**工作的官方代码库，目前处于骨架占位阶段，后续将持续追踪更新。
+
 Action-conditioned flow world models for long-horizon robot execution.
 
 基于 **RSI（Recursive Self-Improvement）+ embodied WAM** 主线的最终 A+B 方案：
